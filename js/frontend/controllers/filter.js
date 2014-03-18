@@ -17,14 +17,16 @@ App.Controller.FilterGenre = function (genre, page) {
 
     movieCollection.fetch();
 
-	// Create movie list
+    // Create movie list
     var movieList = new App.View.MovieList({
         model: movieCollection
     });
 
-	// Clean up if first page
+    // Clean up if first page
     if (!page || page == '1'){
         $('.movie-list').first().empty();
+        App.loader(true, i18n.__('searchLoading'));
+        window.initialLoading = true;
         App.Page.FilterGenre.show();
     }
 
